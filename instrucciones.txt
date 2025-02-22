@@ -1,10 +1,27 @@
 - **Documentación de Tareas:**
   Se ha creado el archivo `instruciones.txt` para actualizar con los detalles de cada commit.
 
-**Commit User-Input part II**: el objetivo es recoger el input del usuario gracias a un formilario.
+**Commit User-Input part III**: el objetivo es recoger el input del usuario gracias a un formilario.
 
-- importa la clase FormsModule en user-input.component.ts para poder acceder a eventos custom de angular
-- añade un evento (ngSubmit)= al formulario que hemos creado en el commit anterior
-- crea un metodo onSubmit() que muestro por pantalla "Submitted"
+ una vez establecido el event binding con ngSubmit, vamos a establecer property binding, ambas forman
+ lo que se conoce en angular como 2-way-binding, 2 way binding no es soportado por todos los componentes
+ asi que usaremos [(ngModel)] presente en FormsModule
 
-una vez completado deberias ver en la consola del navegador: "Submitted"
+- añade la propiedad "enterInitialInvestment" a tu clase UserInputComponent y asignala a '0'
+  es un string porque todos los outputs de los forms son stings, en el componente de los calculos nos encargaremos de
+  este problema de tipos
+
+- añade [(ngModel)]="enteredInitialInvestment", al input de initial-investment de user-input.component.html
+
+- repite los ultimos 2 pasos con enteredAnualInvestment, enteredExpectedReturn, duration(este se inicializa en '10')
+
+  - añade el metodo submit:
+        console.log(this.enteredInitialInvestment);
+    console.log(this.enteredAnnualInvestment);
+    console.log(this.enteredExpectedReturn);
+    console.log(this.enteredDuration);
+
+  - comprobar el error del navegador pulsando calculate y añadir la propiedad name a los inputs de user-input.component.html
+
+    - volver a comprobar, introduce datos mock en alguno de los 4 campos, dale a calcular y abre la consola del navegador,
+      veras datos por defecto y los datos que has introducido, asi que el 2-way-binding funciona
