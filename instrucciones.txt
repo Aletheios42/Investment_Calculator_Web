@@ -1,17 +1,11 @@
 - **Documentación de Tareas:**
   Se ha creado el archivo `instruciones.txt` para actualizar con los detalles de cada commit.
 
-**Commit Inicial: Estructura del Proyecto Calculadora de Inversiones**
-
-- **Descripción del Proyecto:**
-  Construcción de una calculadora de inversiones con Angular.
-
-- **Tareas a realizar (commit por commit):**
-  1. **Header:** Crear un componente `header` que cargue una imagen y un título.
-  2. **User Input:** Desarrollar el componente `user-input` que implemente _2-way data binding_.
-  3. **Investment Result:** Construir el componente `investment-result` para mostrar los resultados en pantalla.
-
-- **Estado Actual:**
-  Se copia la estructura inicial del proyecto Angular, incluyendo algunos estilos básicos.
-
-
+**Commit Header:
+- crea el componente "header" con:
+  ``` shell
+  ng g c header --skip-tests
+  ```
+  - en header.component.html crea un header con un heading y una imagen(src = investment-calculator.png)
+  - en header.component.css, simplemente copia el archivo en tu proyecto
+  - importa la clase HeaderComponent en app.component.ts, y usa "<app-header />" en app.component.html
