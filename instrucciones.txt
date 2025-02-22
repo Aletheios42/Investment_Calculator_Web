@@ -1,24 +1,52 @@
 - **Documentación de Tareas:**
   Se ha creado el archivo `instruciones.txt` para actualizar con los detalles de cada commit.
 
-**Commit Investment Result: Parte I** Hacer la tabla con los calculos y conectar los componentes
+**Commit Investment Result: Parte II** Hacer la tabla con los calculos y conectar los componentes
 
-- copia la clase  AppComponent, con los nuevos calculos actualizados
+- copia el archivo investments-input.model.ts, e importa el tipo InvesmentInput en app.component.ts
+  los modelos se usan para mantener un codigo limpio
 
-  ahora vamos a conectar los componentes user-input(hijo) y appcomponent(padre) emitiendo un "custom event"
-- añade una nueva propiedad en UserInputComponent:
-  ``` ts
-  @Output() calculate = eventEmitter<{
-    initialInvestment: number;
+- en onCalculateInvestmentResults(), cambia el tipado con el objeto de data, por simplemente en tipo de la interfaz
+
+- en user-input.component.ts, cambia el objeto del evento emitido por el tipo recien declarado, con los correspondientes input
+
+- genera un nuevo componente "investment-results" y copia el css y genera un parrafo
+  en investment-result.component.html que diga "Por favor, introduzca los valores y presiona calcular"
+  y una tabla con los siguentes encabezados de tabla,
+  <table>
+  <thead>
+    <th>Year</th>
+    <th>Investment Value</th>
+    <th>Interest(year)</th>
+    <th>Invested Capital</th>
+  </thead>
+  <tbody></tbody>
+</table>
+
+- ahora exponenmos los resultados al app.component(padre), escribiendo esto en nuestra clase InvestmentResultsComponent :
+  @Input() results?: {
+    year: number;
+    interest: number;
+    valueEndOfYear: number;
     annualInvestment: number;
-    expectedReturn: number;
-    duration: number;
-  }>();
-  ```
-  para emitir un objeto como evento.
+    totalAmountInvested: number;
+  }[];
+  nota la "?" esta para que no haya conflicto por no dar valores hasta no pulsar el boton de calcular
+  y el array es porque nos pediran calcular varios años
 
-  - cambia el metodo onSubmit() en user-input.component.ts para que emita el objeto, y borra los console.log
-  - ahora en app.component.html usa event binding onCalculateInvestmentResults()
+- crea una propieda en Appcomponent tal que asi:
+  resultsData?: {
+    year: number;
+    interest: number;
+    valueEndOfYear: number;
+    annualInvestment: number;
+    totalInterest: number;
+    totalAmountInvested: number;
+  }[];
+  - cambia el console.log de onCalculateInvestmentResults
+    this.resultsData = annualData;
 
+  - Ahora porfin en el app.component.html, importamos nuestro componente y hacemos
+    property binding en el app.component.html:
+    <app-investment-results [results]="resultsData" />
 
- tras recarga la pagina, deberias ver en la consola del navegador un array con los presupuestos
