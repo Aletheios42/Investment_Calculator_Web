@@ -1,11 +1,12 @@
 - **Documentación de Tareas:**
   Se ha creado el archivo `instruciones.txt` para actualizar con los detalles de cada commit.
 
-**Commit Header:
-- crea el componente "header" con:
-  ``` shell
-  ng g c header --skip-tests
-  ```
-  - en header.component.html crea un header con un heading y una imagen(src = investment-calculator.png)
-  - en header.component.css, simplemente copia el archivo en tu proyecto
-  - importa la clase HeaderComponent en app.component.ts, y usa "<app-header />" en app.component.html
+**Commit User-Input**: el objetivo es recoger el input del usuario gracias a un formilario.
+
+- crea el componente user-input
+
+- en user-input.component.html, crea un formulario con 4 apartados
+  initial-investment, annual-investment, expected-return, duration,
+  y un botton "calculate"
+
+- importar su clase a app.component.ts y usar la etiqueta en el app.component.html
