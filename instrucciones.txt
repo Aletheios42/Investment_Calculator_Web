@@ -1,52 +1,19 @@
 - **Documentación de Tareas:**
   Se ha creado el archivo `instruciones.txt` para actualizar con los detalles de cada commit.
 
-**Commit Investment Result: Parte II** Hacer la tabla con los calculos y conectar los componentes
+**Commit Investment Result: Parte III** Hacer la tabla con los calculos y conectar los componentes
 
-- copia el archivo investments-input.model.ts, e importa el tipo InvesmentInput en app.component.ts
-  los modelos se usan para mantener un codigo limpio
+ahora vamos a enseñar por pantalla todos los datos recogidos, creando una tabla en nuestro invesment-result.component.html con interpolacion de strings {{la variable que recibimos en @Input()}}
 
-- en onCalculateInvestmentResults(), cambia el tipado con el objeto de data, por simplemente en tipo de la interfaz
+- renderiza condicionalmente el parrafo y la tabla, envolviendolos con @if(){} @else {} en investment.component.html y añade la class center al parrafo para mejorar su estilo.
+pista: https://angular.dev/api/core/@if
 
-- en user-input.component.ts, cambia el objeto del evento emitido por el tipo recien declarado, con los correspondientes input
+- comprueba en localhost, si este renderizado condicional funciona.
+  Tienes que pulsar el boton calcular y ver como desaparece el parrafo y aparece la primera fila con los titulos de la tabla
 
-- genera un nuevo componente "investment-results" y copia el css y genera un parrafo
-  en investment-result.component.html que diga "Por favor, introduzca los valores y presiona calcular"
-  y una tabla con los siguentes encabezados de tabla,
-  <table>
-  <thead>
-    <th>Year</th>
-    <th>Investment Value</th>
-    <th>Interest(year)</th>
-    <th>Invested Capital</th>
-  </thead>
-  <tbody></tbody>
-</table>
+-  añade @for(result of results; track result.year) {<tr>} en el <tbody> para renderizar de manera dinamica las cuentas de cada año
+  pista: https://angular.dev/api/core/@for https://v17.angular.io/guide/interpolation
 
-- ahora exponenmos los resultados al app.component(padre), escribiendo esto en nuestra clase InvestmentResultsComponent :
-  @Input() results?: {
-    year: number;
-    interest: number;
-    valueEndOfYear: number;
-    annualInvestment: number;
-    totalAmountInvested: number;
-  }[];
-  nota la "?" esta para que no haya conflicto por no dar valores hasta no pulsar el boton de calcular
-  y el array es porque nos pediran calcular varios años
 
-- crea una propieda en Appcomponent tal que asi:
-  resultsData?: {
-    year: number;
-    interest: number;
-    valueEndOfYear: number;
-    annualInvestment: number;
-    totalInterest: number;
-    totalAmountInvested: number;
-  }[];
-  - cambia el console.log de onCalculateInvestmentResults
-    this.resultsData = annualData;
-
-  - Ahora porfin en el app.component.html, importamos nuestro componente y hacemos
-    property binding en el app.component.html:
-    <app-investment-results [results]="resultsData" />
-
+- añade una pipe para formatear los miembros de result que acabas de interpolar a la moneda de tu preferencia.
+  pista: https://angular.dev/guide/templates/pipes
