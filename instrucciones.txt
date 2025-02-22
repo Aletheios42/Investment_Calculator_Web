@@ -1,12 +1,10 @@
 - **Documentación de Tareas:**
   Se ha creado el archivo `instruciones.txt` para actualizar con los detalles de cada commit.
 
-**Commit User-Input**: el objetivo es recoger el input del usuario gracias a un formilario.
+**Commit User-Input part II**: el objetivo es recoger el input del usuario gracias a un formilario.
 
-- crea el componente user-input
+- importa la clase FormsModule en user-input.component.ts para poder acceder a eventos custom de angular
+- añade un evento (ngSubmit)= al formulario que hemos creado en el commit anterior
+- crea un metodo onSubmit() que muestro por pantalla "Submitted"
 
-- en user-input.component.html, crea un formulario con 4 apartados
-  initial-investment, annual-investment, expected-return, duration,
-  y un botton "calculate"
-
-- importar su clase a app.component.ts y usar la etiqueta en el app.component.html
+una vez completado deberias ver en la consola del navegador: "Submitted"
