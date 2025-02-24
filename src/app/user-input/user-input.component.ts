@@ -9,6 +9,11 @@ import { InvestmentInput } from '../investment-input.model';
   templateUrl: './user-input.component.html',
   styleUrl: './user-input.component.css',
 })
+
+/*
+ * Este componente usa event binding
+ * - @Output()
+ */
 export class UserInputComponent {
   @Output() calculate = new EventEmitter<InvestmentInput>();
 
